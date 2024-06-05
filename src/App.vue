@@ -1,13 +1,29 @@
 <template>
-  <h1 class="font-semibold text-[50px] text-center">Hello world</h1>
+  <component :is="layout">
+    <Transition>
+      <router-view />
+    </Transition>
+  </component>
 </template>
-
 <script>
+import Default from './layouts/Default.vue';
 export default {
-  name: "App",
-  components: {},
-};
+  components: {Default},
+  computed: {
+    layout() {
+      return 'Default'
+    }
+  }
+}
 </script>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.8s ease;
+}
 
-<style>
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
